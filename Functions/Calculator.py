@@ -5,10 +5,16 @@ from Calcfunc.Subtraction import subtraction
 from Calcfunc.Multiplication import multiplication
 from Calcfunc.Division import division
 from Calcfunc.Percentage import percent
+from Calcfunc.Indicies import Indicies
+from Calcfunc.Root import root
+from Calcfunc.Square import square
+from Calcfunc.SqrRoot import sqrroot
+from Calcfunc.Euler import euler
+from Calcfunc.Pi import pi
 
 
 
-def basic_calculator():
+def Basic_calculator():
     application = Tk()
     application.geometry("400x700")
     application.title("Base_Calculator")
@@ -149,10 +155,10 @@ def basic_calculator():
     Negative.place(x = 1, y = 600)
     application.mainloop()
     
-def scientific_calculator():
+def Scientific_calculator():
     application = Tk()
     application.geometry("400x700")
-    application.title("Base_Calculator")
+    application.title("Science_Calculator")
     application.config(bg="black")
 
     button_frame = Frame(application, bg="#000033")
@@ -170,6 +176,7 @@ def scientific_calculator():
 
     input_target = 'a'
     current_operator = None
+    Last_ans = None
 
     def set_input_target(t):
         nonlocal input_target
@@ -219,6 +226,7 @@ def scientific_calculator():
         entry_symbol.config(text=op)
         
     def do_equal():
+        nonlocal Last_ans
         try:
             a = float(entry_a.get())
             b = float(entry_b.get())
@@ -233,9 +241,17 @@ def scientific_calculator():
             else:
                 result_label.config(text='no op')
                 return
+            Last_ans = round(res,3)
             result_label.config(text=str(round(res, 3)))
         except Exception:
             result_label.config(text='error')
+            
+    def ans():
+        if Last_ans == None:
+            return
+        target = entry_a if input_target == 'a' else entry_b
+        target.delete(0, END)
+        target.insert(0, str(Last_ans))
 
     def empty():
         entry_a.delete(0, END)
@@ -247,48 +263,121 @@ def scientific_calculator():
     entry_a.bind("<FocusIn>", lambda e: set_input_target('a'))
     entry_b.bind("<FocusIn>", lambda e: set_input_target('b'))
 
-    button_font = ("Georgia")
+    C = Button(button_frame, text='C', padx=20, pady=20, command=empty, fg="#00aa00", bg="#ffff00")
+    Percent = Button(button_frame, text='%', padx=20, pady=20, command=lambda: Percent_operator('%'), fg="#00aa00", bg="#ffff00")#Ich bin ein Idiot oida, wie ich vergessen kann
+    Value0 = Button(button_frame, text = 0, padx=20, pady=20, command=lambda: insert_digit(0), fg="#000000", bg="#00cccc")
+    Value1 = Button(button_frame, text = 1, padx=20, pady=20, command=lambda: insert_digit(1), fg="#ffffff", bg="#880000")
+    Value2 = Button(button_frame, text = 2, padx=20, pady=20, command=lambda: insert_digit(2), fg="#ffffff", bg="#cc8800")
+    Value3 = Button(button_frame, text = 3, padx=20, pady=20, command=lambda: insert_digit(3), fg="#ffffff", bg="#cccc00")
+    Value4 = Button(button_frame, text = 4, padx=20, pady=20, command=lambda: insert_digit(4), fg="#ffffff", bg="#cccc00")
+    Value5 = Button(button_frame, text = 5, padx=20, pady=20, command=lambda: insert_digit(5), fg="#ffffff", bg="#880000")
+    Value6 = Button(button_frame, text = 6, padx=20, pady=20, command=lambda: insert_digit(6), fg="#ffffff", bg="#cc8800")
+    Value7 = Button(button_frame, text = 7, padx=20, pady=20, command=lambda: insert_digit(7), fg="#ffffff", bg="#cc8800")
+    Value8 = Button(button_frame, text = 8, padx=20, pady=20, command=lambda: insert_digit(8), fg="#ffffff", bg="#cccc00")
+    Value9 = Button(button_frame, text = 9, padx=20, pady=20, command=lambda: insert_digit(9), fg="#ffffff", bg="#880000")
+    ValuePi = Button(button_frame, text = 'π', padx= 20, pady=20, fg="#ffffff", bg="#aa0000")
+    ValueEu = Button(button_frame, text = "eˣ", padx=20, pady=20, fg="#ffffff", bg="#aa0000")
+    ValueAns = Button(button_frame, text = "ans", padx=18, pady=18, command=ans, fg="#ffffff", bg="#00aa00")
+    Sin = Button(button_frame, text="sin", padx=25, pady=20, fg="#aaaaaa", bg="#666666")
+    Cos = Button(button_frame, text="cos", padx=25, pady=20, fg="#aaaaaa", bg="#666666")
+    Tan = Button(button_frame, text="tan", padx=23, pady=20, fg="#aaaaaa", bg="#666666")
+    Addition = Button(button_frame, text="+", padx=20, pady=20, command=lambda: set_operator('+'), fg="#cccccc", bg="#00aa00")
+    Subtraction = Button(button_frame, text="-", padx=20, pady=20, command=lambda: set_operator('-'), fg="#cccccc", bg="#00aa00")
+    Multiplication = Button(button_frame, text="*", padx=20, pady=20, command=lambda: set_operator('*'), fg="#cccccc", bg="#00aa00")
+    Division = Button(button_frame, text="/", padx=20, pady=20, command=lambda: set_operator('/'), fg="#cccccc", bg="#00aa00")
+    Equal = Button(button_frame, text="=", padx=18, pady=18, command=do_equal, fg="#ffffff", bg="#006600")
+    Decimal = Button(button_frame, text=".", padx=20, pady=18, command=lambda: insert_digit('.'), fg="#ffffff", bg="#0066aa")
+    Negative = Button(button_frame, text="+/-", padx=15, pady=17, command=lambda: toggle_negative('-'), fg="#ffffff", bg="#0066aa")
+    Square = Button(button_frame, text = "x²", padx=19, pady=19, fg="#ffffff", bg="#0000ff")
+    Power = Button(button_frame, text = "yˣ", padx=20, pady=20, fg="#00aa00", bg="#ffff00")
+    SqrRoot = Button(button_frame, text = '√ ', padx=19, pady=19, fg="#ffffff", bg="#0000ff")
+    Left = Button(button_frame, text = "←", padx=20, pady=19, fg="#ffffff", bg="#00bb00")
+    Right = Button(button_frame, text = "→", padx=19, pady=18, fg="#ffffff", bg="#00bb00")
+    Root = Button(button_frame, text = "ˣ√y", padx=17, pady=19, fg="#00aa00", bg="#ffff00")
+    Brk1 = Button(button_frame, text = "(", padx=21, pady=20, fg ="#ffffff", bg="#00cc00")
+    Brk2 = Button(button_frame, text = ")", padx=23, pady=20, fg="#ffffff", bg="#00cc00")
 
-    C = Button(button_frame, text='C', padx=60, pady=35, command=empty, fg="#ffffff", bg="#ffff00")
-    Percent = Button(button_frame, text='%', padx=60, pady=35, command=lambda: Percent_operator('%'), fg="#ffffff", bg="#ffff00")#Ich bin ein Idiot oida, wie ich vergessen kann
-    Value0 = Button(button_frame, text = 0, padx=35, pady=35, command=lambda: insert_digit(0), fg="#000000", bg="#00cccc")
-    Value1 = Button(button_frame, text = 1, padx=35, pady=35, command=lambda: insert_digit(1), fg="#ffffff", bg="#880000")
-    Value2 = Button(button_frame, text = 2, padx=35, pady=35, command=lambda: insert_digit(2), fg="#ffffff", bg="#cc8800")
-    Value3 = Button(button_frame, text = 3, padx=35, pady=35, command=lambda: insert_digit(3), fg="#ffffff", bg="#cccc00")
-    Value4 = Button(button_frame, text = 4, padx=35, pady=35, command=lambda: insert_digit(4), fg="#ffffff", bg="#cccc00")
-    Value5 = Button(button_frame, text = 5, padx=35, pady=35, command=lambda: insert_digit(5), fg="#ffffff", bg="#880000")
-    Value6 = Button(button_frame, text = 6, padx=35, pady=35, command=lambda: insert_digit(6), fg="#ffffff", bg="#cc8800")
-    Value7 = Button(button_frame, text = 7, padx=35, pady=35, command=lambda: insert_digit(7), fg="#ffffff", bg="#cc8800")
-    Value8 = Button(button_frame, text = 8, padx=35, pady=35, command=lambda: insert_digit(8), fg="#ffffff", bg="#cccc00")
-    Value9 = Button(button_frame, text = 9, padx=35, pady=35, command=lambda: insert_digit(9), fg="#ffffff", bg="#880000")
-    Addition = Button(button_frame, text="+", padx=35, pady=35, command=lambda: set_operator('+'), fg="#cccccc", bg="#00aa00")
-    Subtraction = Button(button_frame, text="-", padx=35, pady=35, command=lambda: set_operator('-'), fg="#cccccc", bg="#00aa00")
-    Multiplication = Button(button_frame, text="*", padx=35, pady=35, command=lambda: set_operator('*'), fg="#cccccc", bg="#00aa00")
-    Division = Button(button_frame, text="/", padx=35, pady=35, command=lambda: set_operator('/'), fg="#cccccc", bg="#00aa00")
-    Equal = Button(button_frame, text="=", padx=35, pady=35, command=do_equal, fg="#ffffff", bg="#006600")
-    Decimal = Button(button_frame, text=".", padx=35, pady=35, command=lambda: insert_digit('.'), fg="#ffffff", bg="#0066aa")
-    Negative = Button(button_frame, text="+/-", padx=33, pady=33, command=lambda: toggle_negative('-'), fg="#ffffff", bg="#0066aa")
-
-    C.place(x = 300, y = 300)
-    Percent.place(x = 145, y = 200)
-    Value0.place(x = 100, y = 450)
-    Value1.place(x = 100, y = 400)
-    Value2.place(x = 150, y = 400)
-    Value3.place(x = 200, y =400)
-    Value4.place(x = 100, y = 350)
-    Value5.place(x = 150, y = 350)
-    Value6.place(x = 200, y = 350)
-    Value7.place(x = 100, y = 300)
-    Value8.place(x = 150, y = 300)
-    Value9.place(x = 200, y = 300)
-    Addition.place(x = 250, y = 402)
-    Subtraction.place(x = 300, y = 400)
-    Multiplication.place(x = 250, y = 350)
-    Division.place(x = 300, y = 350)
-    Equal.place(x = 300, y = 600)
-    Decimal.place(x = 200, y = 455)
-    Negative.place(x = 150, y = 455)
+    C.place(x = 330, y = 420)
+    Percent.place(x = 280, y = 420)
+    Value0.place(x = 115, y = 610)
+    Value1.place(x = 115, y = 550)
+    Value2.place(x = 170, y = 550)
+    Value3.place(x = 225, y = 550)
+    Value4.place(x = 115, y = 485)
+    Value5.place(x = 170, y = 485)
+    Value6.place(x = 225, y = 485)
+    Value7.place(x = 115, y = 420)
+    Value8.place(x = 170, y = 420)
+    Value9.place(x = 225, y = 420)
+    ValuePi.place(x = 1, y = 420)
+    ValueAns.place(x = 280, y = 610)
+    ValueEu.place(x = 60, y = 420)
+    Sin.place(x = 1, y = 355)
+    Cos.place(x = 75, y = 355)
+    Tan.place(x = 152, y = 355)
+    Brk1.place(x = 225, y = 355)
+    Brk2.place(x = 280, y = 355)
+    Addition.place(x = 280, y = 485)
+    Subtraction.place(x = 330, y = 485)
+    Multiplication.place(x = 280, y = 550)
+    Division.place(x = 330, y = 550)
+    Equal.place(x = 330, y = 610)
+    Decimal.place(x = 227, y = 615)
+    Negative.place(x = 170, y = 615)
+    Square.place(x = 60, y = 485)
+    Power.place(x = 60, y = 550)
+    SqrRoot.place(x = 1, y = 485)
+    Root.place(x = 1, y = 550)
+    Left.place(x = 1, y = 612)
+    Right.place(x = 60, y = 615)
     application.mainloop()
+    
+def Currency_calculator():
+    top = Tk()
+    top.geometry("600x300")
+    top.config(bg = "#000000")
+
+    label = Label(top, text = " Currencies", bg = "#333333")
+
+    label.pack(pady = 10)
+
+    List_frame = Frame(top, bg = "#333333")
+    List_frame.pack(pady = 20)
+    Button_frame = Frame(top, bg = "#333333")
+    Button_frame.pack(pady = 20)
+
+
+    Col1 = Frame(List_frame, bg = "#333333")
+    Col1.pack(side = LEFT, padx = 30)
+
+    Conv = Button(Button_frame, text="Convert", width = 10, height = 2)
+    Conv.pack()
+
+
+    label1 = Label(Col1, text = "FromCurr", bg = "#555555", fg = "#aaaaaa", width = 21)
+    label1.pack()
+
+    listbox1 = Listbox(Col1, width = 25, height = 3)
+    listbox1.pack()
+
+
+    Col2 = Frame(List_frame, bg = "#333333")
+    Col2.pack(side = LEFT, padx = 30)
+
+    label2 = Label(Col2, text = "Tocurr", bg = "#555555", fg = "#aaaaaa", width = 21)
+    label2.pack()
+
+    listbox2 = Listbox(Col2, width = 25, height = 3)
+    listbox2.pack()
+
+    Currencies = ["US Dollar", "EUR Euro", "GBR Pound", "CHR Frank", "JPY Yen", "CNY Yuan", "SEK Swedish Krona", "NOK Norwegian Krone", \
+        "DKK Danish Krone", "RUB Ruble", "BWP Pula"]
+
+    for Currency in Currencies:
+        listbox1.insert(END, Currency)
+        listbox2.insert(END, Currency)
+
+    top.mainloop()
     
 Set_up = Tk()
 Set_up.geometry("400x600")
@@ -298,12 +387,14 @@ Set_up.config(bg="black")
 buttom_frame = Frame(Set_up, bg="black")
 buttom_frame.pack(fill = 'both', expand=True)
 
-Basic = Button(buttom_frame, text="Basic Calculator", command=basic_calculator, padx=60, pady=20, fg = "#333366", bg = "#ccccff")
-Scientific = Button(buttom_frame, text="Scientific Calculator", command=scientific_calculator, padx=60, pady=20, fg = "#333366", bg = "#ccccff")
+Basic = Button(buttom_frame, text="Basic Calculator", command=Basic_calculator, padx=60, pady=20, fg = "#333366", bg = "#ccccff")
+Scientific = Button(buttom_frame, text="Scientific Calculator", command=Scientific_calculator, padx=60, pady=20, fg = "#333366", bg = "#ccccff")
+Currency = Button(buttom_frame, text="Currency Calculator", command=Currency_calculator, padx=60, pady=20, fg="#333366", bg="#ccccff")
 
 
 
 Basic.place(x = 100, y = 100)
 Scientific.place(x = 85, y = 200)
+Currency.place(x = 90, y = 300)
 
 Set_up.mainloop()

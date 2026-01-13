@@ -3,55 +3,46 @@ from tkinter import *
 top = Tk()
 
 top.geometry("600x300")
+top.config(bg = "#000000")
 
-listbox1 = Listbox(top, height = 3,
-                  width = 25,
-                  x = 10,
-                  bg = "#aaaaaa",
-                  fg = "#0000aa",
-                  activestyle = 'dotbox')
+label = Label(top, text = " Currencies", bg = "#333333")
+
+label.pack(pady = 10)
+
+List_frame = Frame(top, bg = "#333333")
+List_frame.pack(pady = 20)
+Button_frame = Frame(top, bg = "#333333")
+Button_frame.pack(pady = 20)
 
 
+Col1 = Frame(List_frame, bg = "#333333")
+Col1.pack(side = LEFT, padx = 30)
 
-label1 = Label(top, text = "FromCurr")
+Conv = Button(Button_frame, text="Convert", width = 10, height = 2)
+Conv.pack()
 
-listbox1.insert(1, "US Dollar")
-listbox1.insert(2, "EUR Euro")
-listbox1.insert(3, "GBR Pound")
-listbox1.insert(4, "CHR Frank")
-listbox1.insert(5, "JPY YEN")
-listbox1.insert(6, "CNY Yuan")
-listbox1.insert(7, "SEK Swedish Krona")
-listbox1.insert(8, "NOK Norwegian Krone")
-listbox1.insert(9, "DKK, Danish Krone")
-listbox1.insert(10, "RUB Ruble")
-listbox1.insert(11, "BWP Pula")
 
+label1 = Label(Col1, text = "FromCurr", bg = "#555555", fg = "#aaaaaa", width = 21)
 label1.pack()
+
+listbox1 = Listbox(Col1, width = 25, height = 3)
 listbox1.pack()
 
-listbox2 = Listbox(top, height = 3,
-                  width = 25,
-                  x = 50,
-                  bg = "#aaaaaa",
-                  fg = "#0000aa",
-                  activestyle = 'dotbox')
 
-label2 = Label(top, text = "Tocurr")
+Col2 = Frame(List_frame, bg = "#333333")
+Col2.pack(side = LEFT, padx = 30)
 
-listbox2.insert(1, "US Dollar")
-listbox2.insert(2, "EUR Euro")
-listbox2.insert(3, "GBR Pound")
-listbox2.insert(4, "CHR Frank")
-listbox2.insert(5, "JPY YEN")
-listbox2.insert(6, "CNY Yuan")
-listbox2.insert(7, "SEK Swedish Krona")
-listbox2.insert(8, "NOK Norwegian Krone")
-listbox2.insert(9, "DKK, Danish Krone")
-listbox2.insert(10, "RUB Ruble")
-listbox2.insert(11, "BWP Pula")
-
+label2 = Label(Col2, text = "Tocurr", bg = "#555555", fg = "#aaaaaa", width = 21)
 label2.pack()
+
+listbox2 = Listbox(Col2, width = 25, height = 3)
 listbox2.pack()
+
+Currencies = ["US Dollar", "EUR Euro", "GBR Pound", "CHR Frank", "JPY Yen", "CNY Yuan", "SEK Swedish Krona", "NOK Norwegian Krone", \
+    "DKK Danish Krone", "RUB Ruble", "BWP Pula"]
+
+for Currency in Currencies:
+    listbox1.insert(END, Currency)
+    listbox2.insert(END, Currency)
 
 top.mainloop()

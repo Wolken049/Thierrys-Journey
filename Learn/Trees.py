@@ -3,6 +3,7 @@ class TreeNode:
         self.data = data
         self.left = None
         self.right = None
+        
 root = TreeNode('R')
 NodeA = TreeNode('A')
 NodeB = TreeNode('B')

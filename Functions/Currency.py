@@ -3,31 +3,59 @@ def currency(fromcurr, amount, tocurr):
         case "USD" | "USDOLLAR":
             match tocurr.upper():
                 case "EURO" | "EUR":
-                    return amount * 0.856
+                    return amount * 0.851
                 case "POUND" | "GBP":
-                    return amount * 0.749
+                    return amount * 0.745
                 case "SWISSFRANC" | "CHF":
-                    return amount * 0.800
+                    return amount * 0.793
                 case "YEN" | "JPY":
-                    return amount * 149.543
+                    return amount * 155.159
                 case "Yuan" | "CNY":
-                    return amount * 7.130
+                    return amount * 7.059
                 case "SWEDEDISHKRONA" | "SEK":
-                    return amount * 9.471
+                    return amount * 9.236
                 case "NORWEGIANKRONE" | "NOK":
-                    return amount * 10.030
+                    return amount * 10.063
                 case "DANISHKRONE" | "DKK":
-                    return amount * 6.390
+                    return amount * 6.352
                 case "RUB" | "RUBLE":
                     return amount  * 84.067
                 case "PULA" | "BWP":
-                    return amount * 13.654
+                    return amount * 13.91
+                case "CAD" | "CANADIANDOLLAR":
+                    return amount * 1
+                case _:
+                    return "Unsupported target currency"
+        case "CAD" | "CANADIANDOLLAR":
+            match tocurr.upper():
+                case "USD" | "USDOLLAR":
+                    return amount * 1
+                case "EURO" | "EUR":
+                    return amount * 1
+                case "POUND" | "GBP":
+                    return amount * 1
+                case "SWISSFRANC" | "CHF":
+                    return amount * 1
+                case "YEN" | "JPY":
+                    return amount * 1
+                case "Yuan" | "CNY":
+                    return amount * 1
+                case "SWEDEDISHKRONA" | "SEK":
+                    return amount * 1
+                case "NORWEGIANKRONE" | "NOK":
+                    return amount * 1
+                case "DANISHKRONE" | "DKK":
+                    return amount * 1
+                case "RUB" | "RUBLE":
+                    return amount * 1
+                case "PULA" | "BWP":
+                    return amount * 1
                 case _:
                     return "Unsupported target currency"
         case "EUR" | "EURO":
             match tocurr.upper():
                 case "USD" | "USDOLLAR":
-                    return amount * 1.168
+                    return amount * 1.176
                 case "POUND" | "GBP":
                     return amount * 0.874
                 case "SWISSFRANC" | "CHF":
@@ -46,12 +74,14 @@ def currency(fromcurr, amount, tocurr):
                     return amount * 98.219
                 case "PULA" | "BWP":
                     return amount * 15.990
+                case "CAD" | "CANADIANDOLLAR":
+                    return amount * 1
                 case _:
                     return "Unsupported target currency"
         case "GBP" | "POUND":
             match tocurr.upper():
                 case "USD" | "USDOLLAR":
-                    return amount * 1.336
+                    return amount * 1.343
                 case "EURO" | "EUR":
                     return amount * 1.144
                 case "SWISSFRANC" | "CHF":
@@ -70,12 +100,14 @@ def currency(fromcurr, amount, tocurr):
                     return amount * 112.295
                 case "PULA" | "BWP":
                     return amount * 18.298
+                case "CAD" | "CANADIANDOLLAR":
+                    return amount * 1
                 case _:
                     return "Unsupported target currency"
         case "CHF" | "SWISSFRANC":
             match tocurr.upper():
                 case "USD" | "USDOLLAR":
-                    return amount * 1.250
+                    return amount * 1.261
                 case "EURO" | "EUR":
                     return amount * 1.070
                 case "POUND" | "GBP":
@@ -94,12 +126,14 @@ def currency(fromcurr, amount, tocurr):
                     return amount * 105.040
                 case "PULA" | "BWP":
                     return amount * 17.087
+                case "CAD" | "CANADIANDOLLAR":
+                    return amount * 1
                 case _:
                     return "Unsupported target currency"
         case "JPY" | "YEN":
             match tocurr.upper():
                 case "USD" | "USDOLLAR":
-                    return amount * 0.0067
+                    return amount * 0.0064
                 case "EURO" | "EUR":
                     return amount * 0.0057
                 case "POUND" | "GBP":
@@ -118,12 +152,14 @@ def currency(fromcurr, amount, tocurr):
                     return amount * 0.561
                 case "PULA" | "BWP":
                     return amount * 0.092
+                case "CAD" | "CANADIANDOLLAR":
+                    return amount * 1
                 case _:
                     return "Unsupported target currency"
         case "CNY" | "YUAN":
             match tocurr.upper():
                 case "USD" | "USDOLLAR":
-                    return amount * 0.140
+                    return amount * 0.142
                 case "EURO" | "EUR":
                     return amount * 0.120
                 case "POUND" | "GBP":
@@ -142,12 +178,14 @@ def currency(fromcurr, amount, tocurr):
                     return amount * 11.775
                 case "PULA" | "BWP":
                     return amount * 1.916
+                case "CAD" | "CANADIANDOLLAR":
+                    return amount * 1
                 case _:
                     return "Unsupported target currency"
         case "SWEDEDISHKRONA" | "SEK":
             match tocurr.upper():
                 case "USD" | "USDOLLAR":
-                    return amount * 0.106
+                    return amount * 0.108
                 case "EURO" | "EUR":
                     return amount * 0.090
                 case "POUND" | "GBP":
@@ -166,12 +204,14 @@ def currency(fromcurr, amount, tocurr):
                     return amount * 8.862
                 case "PULA" | "BWP":
                     return amount * 1.439
+                case "CAD" | "CANADIANDOLLAR":
+                    return amount * 1
                 case _:
                     return "Unsupported target currency"
         case "NOK" | "NORWEGIANKRONE":
             match tocurr.upper():
                 case "USD" | "USDOLLAR":
-                    return amount * 0.100
+                    return amount * 0.099
                 case "EURO" | "EUR":
                     return amount * 0.085
                 case "POUND" | "GBP":
@@ -190,6 +230,8 @@ def currency(fromcurr, amount, tocurr):
                     return amount * 8.368
                 case "PULA" | "BWP":
                     return amount * 1.357
+                case "CAD" | "CANADIANDOLLAR":
+                    return amount * 1
                 case _:
                     return "Unsupported target currency"
         case "DANISHKRONE" | "DKK":
@@ -214,6 +256,8 @@ def currency(fromcurr, amount, tocurr):
                     return amount * 13.128
                 case "PULA" | "BWP":
                     return amount * 2.141
+                case "CAD" | "CANADIANDOLLAR": 
+                    return amount * 1
                 case _:
                     return "Unsupported target currency"
         case "RUB" | "RUBLE":
@@ -238,6 +282,8 @@ def currency(fromcurr, amount, tocurr):
                     return amount * 0.076
                 case "PULA" | "BWP":
                     return amount * 0.162
+                case "CAD" | "CANADIANDOLLAR": 
+                    return amount * 1
                 case _:
                     return "Unsupported target currency"
         case "BWP" | "PULA":
@@ -262,6 +308,8 @@ def currency(fromcurr, amount, tocurr):
                     return amount * 0.466
                 case "RUB" | "RUBLE":
                     return amount * 6.157
+                case "CAD" | "CANADIANDOLLAR":
+                    return amount * 1
                 case _:
                     return "Unsupported target currency"
         case _:

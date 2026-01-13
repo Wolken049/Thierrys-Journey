@@ -37,3 +37,5 @@ class MinHeap:
     def insert(self, value):
         new_node = Node(value)
         self.nodes.append(new_node)
+        
+print(min_pointer.data)
